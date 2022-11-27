@@ -14,6 +14,18 @@ const miGlobalMixin = {
             //console.warn('dispatch -> changeIsWonValue', new Date().toLocaleString())
             this.$store.dispatch('changeIsWon', valueToChange)
         },
+        changeMessageDisplayValue(valueToChange) {
+            //this.contador--
+            //console.warn('------------------------------------')
+            //console.warn('dispatch -> changeIsWonValue', new Date().toLocaleString())
+            this.$store.dispatch('changeMessageDisplay', valueToChange)
+        },
+        changeRestartMessageValue(valueToChange) {
+            //this.contador--
+            //console.warn('------------------------------------')
+            //console.warn('dispatch -> changeIsWonValue', new Date().toLocaleString())
+            this.$store.dispatch('changeRestartMessage', valueToChange)
+        },
     },
     computed: {
         getPickedColor() {
@@ -25,7 +37,18 @@ const miGlobalMixin = {
             let value = this.$store.state.isGameWon
            // console.log('getIsWonValue mixin', value)
             return value
+        },
+        getMessageDisplay() {
+            let value = this.$store.state.messageDisplay
+           // console.log('getIsWonValue mixin', value)
+            return value
+        },
+        getRestartMessage() {
+            let value = this.$store.state.restartMessage
+           // console.log('getIsWonValue mixin', value)
+            return value
         }
+        
     }
 }
 

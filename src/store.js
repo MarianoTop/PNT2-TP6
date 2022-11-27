@@ -7,6 +7,9 @@ export default new Vuex.Store({
     state: {
         pickedColor: null,
         isGameWon:false,
+        messageDisplay:"",
+        restartMessage:""
+        
 
     },
     actions: {
@@ -17,7 +20,15 @@ export default new Vuex.Store({
         changeIsWon({commit},value) {
             //console.warn('actions -> changeIsWon', value, new Date().toLocaleString())
             commit('changeIsWon', value)
-        }      
+        },
+        changeMessageDisplay({commit},value) {
+            //console.warn('actions -> changeMessageDisplay', value, new Date().toLocaleString())
+            commit('changeMessageDisplay', value)
+        },
+        changeRestartMessage({commit},value) {
+            //console.warn('actions -> changeMessageDisplay', value, new Date().toLocaleString())
+            commit('changeRestartMessage', value)
+        }            
     },
     mutations: {
         changePickedColor(state, color) {
@@ -27,6 +38,14 @@ export default new Vuex.Store({
         changeIsWon(state,value) {
             //console.warn('mutations -> changeIsWon', state, value, new Date().toLocaleString())
             state.isGameWon = value
-        }  
+        },  
+        changeMessageDisplay(state,value) {
+            //console.warn('mutations -> changeIsWon', state, value, new Date().toLocaleString())
+            state.messageDisplay = value
+        },  
+        changeRestartMessage(state,value) {
+            //console.warn('mutations -> changeIsWon', state, value, new Date().toLocaleString())
+            state.restartMessage = value
+        } 
     }
 })

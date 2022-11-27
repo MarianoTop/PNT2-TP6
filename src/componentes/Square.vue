@@ -1,10 +1,9 @@
 <template >
   <section class="src-componentes-square">
-    <div class="square" :style=getStyle() @click="sendColor()" ></div>
+    <div class="square" :style="getStyle()"  @click="sendColor()" ></div>
   </section>
 </template>
 
- "background-color": color,
 <script>
 export default {
   name: "src-componentes-square",
@@ -12,26 +11,47 @@ export default {
   mounted() {},
   data() {
     return {
-      estiloActual:this.estiloEnviado
+      estilo:this.estiloEnviado
     };
   },
   methods: {
     sendColor(){
-      console.log(this.estilo)
-     this.$emit('color-out',this.estiloActual)
-    },
-    getStyle(){
-      if(this.getIsWonValue){       
-        this.estiloActual= { "background-color": this.getPickedColor,}
+      if(this.getPickedColor== this.estilo["background-color"]){
+        
+        this.changeIsWonValue(true)
+        this.changeMessageDisplayValue("You Picked Right!")
+        this.changeRestartMessageValue("Play Again!")
+        
       }else{
-        this.estiloActual=this.estiloEnviado
+        this.estilo["background-color"] = "#232323"; 
+        this.changeMessageDisplayValue("Try Again!")       
       }
-      return this.estiloActual
+      
+     //this.$emit('color-out',this.estilo)
+    },
 
+    getStyle(){
+      if(this.getIsWonValue){
+        this.estilo["background-color"] = this.getPickedColor
+      }else {
+        /* Francamente no entiendo porque funciona.
+         normalmente esperaria que pase por arriba el color vacio pero por algun motivo no lo pasa y
+         deja el vacio*/
+         //Segun veo con el debugger es como si tambien modificara al estilo enviado... 
+         //no tiene mucho sentido aunque quizas al ser un objeto modifica la referencia?
+         // y quizas luego al presionar new creo un nuevo objeto y por eso lo modifica?
 
+        this.estilo=this.estiloEnviado
+      }      
+      return this.estilo
     }
+
+
+
   },
-  computed: {},
+  computed: {
+   
+  },
 };
 </script>
 
